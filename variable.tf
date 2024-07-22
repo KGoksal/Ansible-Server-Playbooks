@@ -1,5 +1,6 @@
 // Variable definitions for the Terraform configuration
 
+
 variable "tags" {
   default = ["control_node", "node_1", "node_2"] // Tags for instances
 }
