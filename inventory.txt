@@ -1,5 +1,6 @@
 # Ansible inventory file specifying hosts and their configuration
 
+
 [web-servers]
 node1 ansible_host=private_ip_address ansible_user=ec2_user # Replace private_ip_address and ec2_user with actual values
 
