@@ -1,59 +1,83 @@
-# Ansible Practice Infrastructure with Terraform
+# Terraform and Ansible Project for Infrastructure and Configuration Management
+## Overview
 
-This repository contains Terraform and Ansible configurations to set up a practice environment for learning and testing Ansible automation on AWS EC2 instances.
+This project provides Terraform configurations to create AWS EC2 instances for Ansible practice and sample Ansible playbooks to perform common tasks on these instances.
 
-## Files Overview
+### Terraform Files
+- **main.tf**: Creates EC2 instances with Amazon Linux 2023 and Ubuntu 22.04, along with a security group allowing SSH (22) and HTTP (80) connections.
+- **variables.tf**: Defines variables for instance tags, key name, user, AMIs, instance type, and AWS credentials.
+- **inventory.txt**: Specifies the Ansible inventory with groups and variables.
+- **ansible.cfg**: Configuration file for Ansible settings.
 
-- **main.tf**: Terraform configuration file to provision AWS EC2 instances for Ansible practice.
-- **variables.tf**: Defines input variables used in `main.tf`.
-- **inventory.txt**: Ansible inventory file specifying hosts and their configuration for Ansible playbooks.
-- **ansible.cfg**: Ansible configuration file with custom settings for this practice environment.
+### Ansible Playbooks
+- **install_docker.yml**: Installs and configures Docker on servers.
+- **setup_web_server.yml**: Sets up a web server using Apache.
+- **create_user.yml**: Creates a user on servers.
+- **install_nginx.yml**: Installs and configures Nginx.
+- **install_mysql.yml**: Installs and configures MySQL.
+- **install_python.yml**: Installs Python and pip on servers.
 
-## Configuration Details
+## Prerequisites
+- Terraform installed
+- AWS CLI configured with appropriate credentials
+- Ansible installed
+- SSH key pair created and added to the AWS account
 
-### Terraform (main.tf, variables.tf)
+# Usage
+## Step 1: Terraform Setup
 
-- **main.tf**: 
-  - Defines AWS provider and resources (`aws_instance` and `aws_security_group`) necessary to create EC2 instances.
-  - Uses variables for AMI IDs, instance type, key name, and tags for EC2 instances.
-  - Security groups allow SSH (port 22) and HTTP (port 80) access from anywhere.
+1. **Initialize Terraform**
 
-- **variables.tf**: 
-  - Contains variable definitions used in `main.tf`, such as AMI IDs, instance type, tags, and AWS credentials (commented out for security reasons; use environment variables or other secure methods).
+   ```bash
+   terraform init
+   terraform apply
 
-### Ansible (inventory.txt, ansible.cfg)
+## Step 2: Ansible Setup
+### Update Inventory File
+Ensure the inventory.txt file contains the correct private IP addresses of the created EC2 instances.
 
-- **inventory.txt**: 
-  - Ansible inventory file specifying hosts (`node1`, `node2`, etc.) with their private IP addresses and SSH user (`ec2_user`).
-  - Uses `[web-servers]` group for targeting in Ansible playbooks.
+### Update Ansible Configuration
+Make sure ansible.cfg is correctly configured.
 
-- **ansible.cfg**: 
-  - Ansible configuration file with custom settings:
-    - `host_key_checking = False`: Disables SSH host key checking to avoid prompts.
-    - `inventory = inventory.txt`: Specifies the inventory file for Ansible.
-    - `deprecation_warnings = False`: Suppresses deprecation warnings for cleaner output.
-    - `interpreter_python = auto_silent`: Automatically detects and uses the Python interpreter on target hosts without verbose output.
+**Step 3: Running Ansible Playbooks**
+**Install Docker**
+```
+bash
+Copy code
+ansible-playbook install_docker.yml
 
-## Usage
+**Set Up Web Server**
 
-1. **Prerequisites**:
-   - Ensure you have Terraform installed locally (`terraform --version`).
-   - AWS CLI configured with appropriate credentials and permissions.
-   - Ansible installed on your local machine (`ansible --version`).
+```
+bash
+Copy code
+ansible-playbook setup_web_server.yml
 
-2. **Deployment**:
-   - Clone this repository.
-   - Customize variables in `variables.tf` and `main.tf` as needed (e.g., AWS region, key names).
-   - Run `terraform init` to initialize Terraform.
-   - Run `terraform apply` to create AWS resources based on `main.tf`.
+**Create a User**
 
-3. **Ansible Practice**:
-   - Once Terraform completes provisioning, update `inventory.txt` with actual private IP addresses.
-   - Write Ansible playbooks (`*.yml`) to automate tasks on your EC2 instances.
-   - Use `ansible-playbook -i inventory.txt playbook.yml` to execute playbooks against your infrastructure.
+```
+bash
+Copy code
+ansible-playbook create_user.yml
 
+**Install and Configure Nginx**
 
-## Notes
+```
+bash
+Copy code
+ansible-playbook install_nginx.yml
 
-- **Security**: Always handle AWS credentials securely. Use environment variables or other secure methods to pass credentials to Terraform and Ansible.
+**Install and Configure MySQL**
+
+```
+bash
+Copy code
+ansible-playbook install_mysql.yml
+
+**Install Python and pip**
+
+```
+bash
+Copy code
+ansible-playbook install_python.yml
 
