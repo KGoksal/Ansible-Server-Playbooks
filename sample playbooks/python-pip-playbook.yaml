@@ -1,0 +1,29 @@
+---
+# Playbook to install Python and pip on servers
+- name: Install Python and pip on servers
+  hosts: web-servers
+  become: yes  # Run tasks with escalated privileges
+  tasks:
+    # Update the apt cache
+    - name: Update the apt cache
+      apt:
+        update_cache: yes
+
+    # Install Python
+    - name: Install Python
+      apt:
+        name: python3
+        state: present
+
+    # Install pip for Python
+    - name: Install pip
+      apt:
+        name: python3-pip
+        state: present
+
+    # Upgrade pip to the latest version
+    - name: Upgrade pip to the latest version
+      pip:
+        name: pip
+        state: latest
+        executable: pip3
