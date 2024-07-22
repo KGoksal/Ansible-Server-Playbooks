@@ -43,41 +43,38 @@ Make sure ansible.cfg is correctly configured.
 **Install Docker**
 ```
 bash
-Copy code
 ansible-playbook install_docker.yml
+```
 
 **Set Up Web Server**
 
 ```
 bash
-Copy code
 ansible-playbook setup_web_server.yml
 
 **Create a User**
 
 ```
 bash
-Copy code
 ansible-playbook create_user.yml
-
+```
 **Install and Configure Nginx**
 
 ```
 bash
-Copy code
 ansible-playbook install_nginx.yml
+```
 
 **Install and Configure MySQL**
 
 ```
 bash
-Copy code
 ansible-playbook install_mysql.yml
+```
 
 **Install Python and pip**
 
 ```
 bash
-Copy code
 ansible-playbook install_python.yml
-
+```
