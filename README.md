@@ -51,6 +51,7 @@ ansible-playbook install_docker.yml
 ```
 bash
 ansible-playbook setup_web_server.yml
+```
 
 **Create a User**
 
@@ -58,6 +59,7 @@ ansible-playbook setup_web_server.yml
 bash
 ansible-playbook create_user.yml
 ```
+
 **Install and Configure Nginx**
 
 ```
