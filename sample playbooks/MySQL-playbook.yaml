@@ -1,0 +1,49 @@
+---
+# Playbook to install MySQL on servers
+- name: Install MySQL on servers
+  hosts: web-servers
+  become: yes  # Run tasks with escalated privileges / sudo user
+  tasks:
+    # Update the apt cache
+    - name: Update the apt cache
+      apt:
+        update_cache: yes
+
+    # Install MySQL server
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+
+    # Ensure MySQL service is running
+    - name: Ensure MySQL service is running
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    # Set MySQL root password
+    - name: Set MySQL root password
+      mysql_user:
+        name: root
+        host: localhost
+        password: "your_root_password"
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        state: present
+
+    # Remove anonymous MySQL users
+    # - name: Remove anonymous MySQL users
+    #   mysql_user:
+    #     name: ''
+    #     host_all: yes
+    #     state: absent
+    #     login_user: root
+    #     login_password: "your_root_password"
+
+    # Remove MySQL test database
+    # - name: Remove MySQL test database
+    #   mysql_db:
+    #     name: test
+    #     state: absent
+    #     login_user: root
+    #     login_password: "your_root_password"

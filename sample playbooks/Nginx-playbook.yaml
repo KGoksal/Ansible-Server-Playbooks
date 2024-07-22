@@ -1,0 +1,37 @@
+---
+# Playbook to install and configure Nginx
+
+- name: Install and configure Nginx
+  hosts: web-servers
+  become: yes  # Run tasks with escalated privileges
+  tasks:
+    # Update the apt cache
+    - name: Update the apt cache
+      apt:
+        update_cache: yes
+
+    # Install Nginx web server
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    # Enable and start the Nginx service
+    - name: Enable and start Nginx service
+      service:
+        name: nginx
+        enabled: yes
+        state: started
+
+    # # Copy custom Nginx configuration file to the server
+    # - name: Copy custom Nginx configuration file
+    #   copy:
+    #     src: /path/to/your/local/nginx.conf
+    #     dest: /etc/nginx/nginx.conf
+    #     mode: '0644'
+
+    # # Reload Nginx service to apply the new configuration
+    # - name: Reload Nginx to apply configuration changes
+    #   service:
+    #     name: nginx
+    #     state: reloaded

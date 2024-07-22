@@ -1,0 +1,39 @@
+---
+# Playbook to create a user on servers
+- name: Create a user on servers
+  hosts: web-servers
+  become: yes  # Run tasks with escalated privileges
+  tasks:
+    # Create a new user with a specific shell and hashed password
+    - name: Create a new user
+      user:
+        name: johndoe
+        comment: "John Doe User"
+        shell: /bin/bash
+        state: present
+        password: "{{ 'password' | password_hash('sha512') }}"
+
+    # Add the user to the sudo group
+    - name: Add the user to the sudo group
+      user:
+        name: johndoe
+        groups: sudo
+        append: yes
+
+    # Create the .ssh directory for the user with appropriate permissions
+    - name: Create .ssh directory
+      file:
+        path: /home/johndoe/.ssh
+        state: directory
+        mode: '0700'
+        owner: johndoe
+        group: johndoe
+
+    # Copy the public key to the user's authorized_keys file
+    - name: Copy the public key to the user's .ssh directory
+      copy:
+        src: /path/to/your/local/id_rsa.pub
+        dest: /home/johndoe/.ssh/authorized_keys
+        mode: '0600'
+        owner: johndoe
+        group: johndoe
