@@ -42,41 +42,35 @@ Make sure ansible.cfg is correctly configured.
 **Step 3: Running Ansible Playbooks**
 **Install Docker**
 ```
-bash
 ansible-playbook install_docker.yml
 ```
 
 **Set Up Web Server**
 
 ```
-bash
 ansible-playbook setup_web_server.yml
 ```
 
 **Create a User**
 
 ```
-bash
 ansible-playbook create_user.yml
 ```
 
 **Install and Configure Nginx**
 
 ```
-bash
 ansible-playbook install_nginx.yml
 ```
 
 **Install and Configure MySQL**
 
 ```
-bash
 ansible-playbook install_mysql.yml
 ```
 
 **Install Python and pip**
 
 ```
-bash
 ansible-playbook install_python.yml
 ```
