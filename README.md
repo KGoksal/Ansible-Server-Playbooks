@@ -84,6 +84,16 @@ ansible-playbook install_python.yml
 
 
 # Ansible Ad hoc Commands
+## Install a package using apt/yum
+### a. For CentOS/RHEL:
+```
+ansible all -b -m yum -a "name=<package_name> state=present"
+```
+### b. For CentOS/RHEL:
+```
+ansible all -b -m apt -a "name=<package_name> state=present"
+```
+### c. Other Commands:
 - **Ping all hosts**
 ```
 ansible all -m ping
@@ -95,15 +105,6 @@ ansible all -a "free -m"
 - **Check uptime on all hosts**
 ```
 ansible all -a "uptime"
-```
-## Install a package using apt/yum
-### a. For CentOS/RHEL:
-```
-ansible all -b -m yum -a "name=<package_name> state=present"
-```
-### b. For CentOS/RHEL:
-```
-ansible all -b -m apt -a "name=<package_name> state=present"
 ```
 - **Restart a service**
 ```
