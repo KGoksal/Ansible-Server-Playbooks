@@ -127,8 +127,11 @@ ansible all -b -m user -a "name=<username> password=<password> state=present"
 ansible all -a "df -h"
 ```
 **Notes:** The -b flag is used to become a superuser (equivalent to using sudo).
-
-
-
-
-
+- **List all hosts**
+```
+ansible --list-hosts all 
+```
+- **List all hosts other than web-servers**
+```
+ansible --list-hosts \!web-servers
+```
