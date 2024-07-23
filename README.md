@@ -50,10 +50,10 @@ ansible-playbook connectivity-test-playbook.yaml
 ansible-playbook install_docker.yaml
 ```
 
-**Set Up Web Server**
+**Copy File**
 
 ```
-ansible-playbook setup_web_server.yaml
+ansible-playbook copyfile-playbook.yaml
 ```
 
 **Create a User**
