@@ -9,7 +9,7 @@
         - Joe
         - James
         - Kadir
-      when: ansible_os_family== "redhat"
+      when: ansible_os_family== "RedHat"
 
     - name: create user for SUSE OS FAMILY
       ansible.builtin.user:
