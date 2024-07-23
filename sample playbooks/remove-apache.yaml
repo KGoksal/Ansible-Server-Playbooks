@@ -1,0 +1,21 @@
+---
+- name: Remove Apache from RedHat-based servers #CentOS, Fedora, Amazon Linux 2, RHEL (Red Hat Enterprise Linux)
+  hosts: redhat-servers  # Target group for RedHat-based servers
+  become: yes  # sudo
+  tasks:
+    - name: Remove Apache using dnf  # Task to remove Apache using dnf package manager
+      ansible.builtin.dnf:
+        name: httpd  # Package name for Apache HTTP Server on RedHat-based distributions
+        state: absent  # Ensure the package is removed
+        autoremove: yes  # Remove dependencies that are no longer needed
+
+- name: Remove Apache from Ubuntu servers
+  hosts: ubuntu-servers  # Target group for Ubuntu servers
+  become: yes  # sudo
+  tasks:
+    - name: Remove Apache using apt  # Task to remove Apache using apt package manager
+      ansible.builtin.apt:
+        name: apache2  # Package name for Apache HTTP Server on Debian-based distributions
+        state: absent  # Ensure the package is removed
+        autoremove: yes  # Remove dependencies that are no longer needed
+        purge: yes  # Remove configuration files along with the package
