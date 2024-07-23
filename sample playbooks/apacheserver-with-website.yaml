@@ -1,0 +1,53 @@
+---
+# This playbook installs and configures Apache on Ubuntu servers, and installs Apache, Wget, and Git on RedHat-based servers.
+
+# Section for Ubuntu servers
+- name: Apache installation and configuration for Ubuntu servers
+  hosts: host  # Target group of Ubuntu servers defined in the inventory
+  become: yes  # Execute tasks with sudo privileges
+  tasks:
+    - name: Install Apache
+      ansible.builtin.apt:
+        name: apache2
+        state: latest
+        update_cache: yes  # Ensure the package cache is updated before installation
+      # This task installs the latest version of Apache2
+
+    - name: Create index.html
+      ansible.builtin.copy:
+        content: |
+          <body>
+            <strong> Name: </strong> Goksal, Kadir
+            <strong> Thanks for visiting my page: </strong>
+          </body>
+        dest: /var/www/html/index.html
+      # This task creates an index.html file with the specified content in the default web directory
+
+    - name: Restart and enable Apache service
+      ansible.builtin.service:
+        name: apache2
+        state: restarted  # Restart the Apache service
+        enabled: yes  # Ensure the Apache service is enabled to start on boot
+      # This task restarts Apache to apply any changes and ensures it starts on boot
+
+# Section for RedHat-based servers
+- name: Apache, Wget, Git installation for RedHat-based webservers
+  hosts: host  # Target group of RedHat-based servers defined in the inventory
+  become: yes  # Execute tasks with sudo privileges
+  tasks:
+    - name: Install httpd, wget, and git
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - httpd
+        - wget
+        - git
+      # This task installs the latest versions of httpd (Apache), wget, and git using the dnf package manager in a loop
+
+    - name: Ensure httpd service is started and enabled
+      ansible.builtin.service:
+        name: httpd
+        state: started  # Start the httpd (Apache) service
+        enabled: yes  # Ensure the httpd service is enabled to start on boot
+      # This task starts the httpd service and ensures it is enabled to start on boot

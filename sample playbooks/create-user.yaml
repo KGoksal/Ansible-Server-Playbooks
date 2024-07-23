@@ -1,0 +1,23 @@
+-name: create user
+  hosts: "*" 
+  tasks: 
+    - name: create user for REDHAT OS FAMILY
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - Joe
+        - James
+        - Kadir
+      when: ansible_os_family== "redhat"
+
+    - name: create user for SUSE OS FAMILY
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - Lisa
+        - Mike
+        - Olivia
+      when: ansible_os_family== "SUSE"
+      
