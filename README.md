@@ -79,3 +79,55 @@ ansible-playbook install_mysql.yaml
 ```
 ansible-playbook install_python.yml
 ```
+
+************************************************************************************************
+
+
+# Ansible Ad hoc Commands
+- **Ping all hosts**
+```
+ansible all -m ping
+```
+- **Check free memory on all hosts**
+```
+ansible all -a "free -m"
+```
+- **Check uptime on all hosts**
+```
+ansible all -a "uptime"
+```
+- **Install a package using apt/yum**
+**a. For CentOS/RHEL:**
+```
+ansible all -b -m yum -a "name=<package_name> state=present"
+```
+**b. For CentOS/RHEL:**
+```
+ansible all -b -m apt -a "name=<package_name> state=present"
+```
+- **Restart a service**
+```
+ansible <host_group> -b -m service -a "name=<service_name> state=restarted"
+```
+- **Run a shell command on all hosts**
+```
+ansible all -a "ls -l /path/to/directory"
+```
+- **Gather facts from all hosts**
+```
+ansible all -m setup
+```
+- **Create a new user on all hosts**
+```
+ansible all -b -m user -a "name=<username> password=<password> state=present"
+```
+- **Check disk space on all hosts**
+```
+ansible all -a "df -h"
+```
+**Notes:** The -b flag is used to become a superuser (equivalent to using sudo).
+
+
+
+
+
