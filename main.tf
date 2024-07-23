@@ -20,14 +20,14 @@ provider "aws" {
 }
 
 // Resource block to create three Amazon Linux 2 instances
-resource "aws_instance" "amazon-linux-2" {
+resource "aws_instance" "nodes" {
   ami = var.amznlnx2023 // Amazon Linux 2023 AMI ID
   instance_type = var.instype // Instance type (e.g., t2.micro)
-  count = 3 // Number of instances to create
+  count = 4 // Number of instances to create (adjust count as needed)
   key_name = var.mykey // SSH key name for accessing instances
   vpc_security_group_ids = [aws_security_group.tf-sec-gr.id] // Security group ID
   tags = {
-    Name = element(var.tags, count.index) // Assigning dynamic names from tags variable
+    Name = "node-${count.index}" // Assigning dynamic names
   }
 }
 
@@ -84,7 +84,7 @@ resource "null_resource" "config" {
     host = aws_instance.nodes[0].public_ip
     type = "ssh"
     user = "ec2-user"
-    private_key = file("~/.ssh/${var.mykey}.pem")
+    private_key = file("~/.ssh/${var.mykey}.pem") //change here if your pem file is located differently
     # Do not forget to define your key file path correctly!
   }
 
@@ -95,7 +95,7 @@ resource "null_resource" "config" {
 
   provisioner "file" {
     # Do not forget to define your key file path correctly!
-    source = "~/.ssh/${var.mykey}.pem"
+    source = "~/.ssh/${var.mykey}.pem" //change here if your pem file is located differently
     destination = "/home/ec2-user/${var.mykey}.pem"
   }
 
@@ -108,7 +108,7 @@ resource "null_resource" "config" {
       "echo node1 ansible_host=${aws_instance.nodes[1].private_ip} ansible_ssh_private_key_file=~/${var.mykey}.pem ansible_user=ec2-user >> inventory.txt",
       "echo node2 ansible_host=${aws_instance.nodes[2].private_ip} ansible_ssh_private_key_file=~/${var.mykey}.pem ansible_user=ec2-user >> inventory.txt",
       "echo [ubuntuservers] >> inventory.txt",
-      "echo node3 ansible_host=${aws_instance.nodes[3].private_ip} ansible_ssh_private_key_file=~/${var.mykey}.pem ansible_user=ubuntu >> inventory.txt",
+      "echo node3 ansible_host=${aws_instance.ubuntu.private_ip} ansible_ssh_private_key_file=~/${var.mykey}.pem ansible_user=ubuntu >> inventory.txt",
       "chmod 400 ${var.mykey}.pem"
     ]
   }
