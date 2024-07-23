@@ -96,12 +96,12 @@ ansible all -a "free -m"
 ```
 ansible all -a "uptime"
 ```
-- **Install a package using apt/yum**
-**a. For CentOS/RHEL:**
+## Install a package using apt/yum
+### a. For CentOS/RHEL:
 ```
 ansible all -b -m yum -a "name=<package_name> state=present"
 ```
-**b. For CentOS/RHEL:**
+### b. For CentOS/RHEL:
 ```
 ansible all -b -m apt -a "name=<package_name> state=present"
 ```
