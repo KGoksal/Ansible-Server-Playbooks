@@ -19,3 +19,7 @@
         state: absent  # Ensure the package is removed
         autoremove: yes  # Remove dependencies that are no longer needed
         purge: yes  # Remove configuration files along with the package 
+
+# use these ad hoc commands to check whether apache is installed on your hosts:
+# ansible ubuntu-servers -m shell -a "apache2 -v" and 
+# ansible webserver -m shell -a "httpd -v"
