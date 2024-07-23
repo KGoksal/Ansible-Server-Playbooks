@@ -18,4 +18,4 @@
         name: apache2  # Package name for Apache HTTP Server on Debian-based distributions
         state: absent  # Ensure the package is removed
         autoremove: yes  # Remove dependencies that are no longer needed
-        purge: yes  # Remove configuration files along with the package
+        purge: yes  # Remove configuration files along with the package 
