@@ -40,33 +40,38 @@ Ensure the inventory.txt file contains the correct private IP addresses of the c
 Make sure ansible.cfg is correctly configured.
 
 **Step 3: Running Ansible Playbooks**
+**Connectivity Test**
+```
+ansible-playbook connectivity-test-playbook.yaml
+```
+
 **Install Docker**
 ```
-ansible-playbook install_docker.yml
+ansible-playbook install_docker.yaml
 ```
 
 **Set Up Web Server**
 
 ```
-ansible-playbook setup_web_server.yml
+ansible-playbook setup_web_server.yaml
 ```
 
 **Create a User**
 
 ```
-ansible-playbook create_user.yml
+ansible-playbook create_user.yaml
 ```
 
 **Install and Configure Nginx**
 
 ```
-ansible-playbook install_nginx.yml
+ansible-playbook install_nginx.yaml
 ```
 
 **Install and Configure MySQL**
 
 ```
-ansible-playbook install_mysql.yml
+ansible-playbook install_mysql.yaml
 ```
 
 **Install Python and pip**
