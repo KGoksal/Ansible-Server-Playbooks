@@ -1,5 +1,5 @@
 -name: create user
-  hosts: "*" 
+  hosts: "*"  #all hosts
   tasks: 
     - name: create user for REDHAT OS FAMILY
       ansible.builtin.user:
