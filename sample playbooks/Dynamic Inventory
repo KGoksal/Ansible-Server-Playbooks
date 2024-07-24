@@ -34,8 +34,9 @@ regions:
   - "us-east-1"
 keyed_groups:
   - key: tags.Name
-compose:
+compose: #we define variables by compose:
   ansible_host: public_ip_address
+  ansible_ssh_private_key_file: "'your_pem_file_path'" 
 ---
 
 
