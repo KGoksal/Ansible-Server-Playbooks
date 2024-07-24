@@ -46,8 +46,33 @@ cat secret.yml
 ```
 ansible-playbook --ask-vault-pass create-user.yml
 ```
-ALTERNATIVE:
+-----
+
+# ALTERNATIVE WAYS:
+
+## Vault File:
 ansible-playbook create-user.yml --vault-password-file ./vault_passwd.sh # You can use a vault password file to avoid entering the vault password manually each time.
+
+
+## AWS Parameter Store
+We can also use third party applications like `AWS Parameter Store`.
+-> Create a parameter named `ans-vault_passwd` at AWS Parameter Store. Input `123456` as value.
+-> Modify the `vault_passwd.sh` file as below.
+```sh
+#!/bin/bash
+aws --region=us-east-1 ssm get-parameters --names " <your AWS parameter name>" --query "Parameters[*].{Value:Value}" --output text
+```
+-> Make the script executable.
+```bash
+chmod +x vault_passwd.sh
+```
+- Check the secret.
+
+```bash
+ansible-vault view secret-2.yml --vault-password-file ./vault_passwd.sh
+```
+
+------
 
 ```
 Vault password: enter_your_vault_password
