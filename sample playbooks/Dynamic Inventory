@@ -1,0 +1,56 @@
+### Working with dynamic inventory
+https://docs.ansible.com/ansible/latest/collections/amazon/aws/docsite/aws_ec2_guide.html
+
+- go to AWS Management Consol and select the IAM roles:
+
+- click the  "create role" then create a role with "AmazonEC2FullAccess"
+
+- go to EC2 instance Dashboard, and select the control-node instance
+
+- select actions -> security -> modify IAM role
+
+- select the role thay you have jsut created for EC2 full access and save it.
+
+- install "boto3 and botocore"
+
+```bash
+sudo dnf install pip
+pip install --user boto3 botocore
+```
+
+--------
+
+- Create file named ```inventory_aws_ec2.yml``` in the project directory. 
+(Note: The inventory file is a YAML configuration file and must end with aws_ec2.{yml|yaml}. Example: my_inventory.aws_ec2.yml.)
+
+```
+vim inventory_aws_ec2.yml 
+```
+
+inventory_aws_ec2.yml:
+---
+plugin: amazon.aws.aws_ec2
+regions:
+  - "us-east-1"
+keyed_groups:
+  - key: tags.Name
+compose:
+  ansible_host: public_ip_address
+---
+
+
+- check the inventory: 
+
+```bash
+ansible-inventory -i inventory_aws_ec2.yml --graph
+```
+
+```
+@all:
+  |--@aws_ec2:
+  |  |--ec2-35-201-99-89.compute-1.amazonaws.com
+  |  |--ec2-54-134-77-41.compute-1.amazonaws.com
+  |--@ungrouped:
+```
+
+
