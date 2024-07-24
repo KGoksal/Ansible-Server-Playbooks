@@ -4,9 +4,11 @@
     ansible.builtin.debug:
       msg: >
        This host uses IP address {{ ansible_facts.default_ipv4.address }}
-      
+# this playbook gathers all IPV4 address of all hosts.
+
+
       # Alternative way:
       # This host uses IP address {{ ansible_facts['default_ipv4']['address'] }}  
       # This host uses this scheduler mode {{ ansible_facts['devices']['loop0']['scheduler_mode'] }}  
+      # array example: {{ ansible_facts.device_links.uuids.xvda1[0] }}  
 
-# this playbook gathers all IPV4 address of all hosts.
