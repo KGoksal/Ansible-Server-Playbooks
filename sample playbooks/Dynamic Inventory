@@ -13,7 +13,7 @@ https://docs.ansible.com/ansible/latest/collections/amazon/aws/docsite/aws_ec2_g
 
 - install "boto3 and botocore"
 
-```bash
+```
 sudo dnf install pip
 pip install --user boto3 botocore
 ```
@@ -41,7 +41,7 @@ compose:
 
 - check the inventory: 
 
-```bash
+```
 ansible-inventory -i inventory_aws_ec2.yml --graph
 ```
 
@@ -55,11 +55,20 @@ ansible-inventory -i inventory_aws_ec2.yml --graph
 
 
 - Best Practice Examples for Dynamic Inventory:
-1. Filter by Tag Name:
+
+1. Filter by spesific Tag Name:
 plugin: amazon.aws.aws_ec2
 regions:
   - "us-east-1"
 filters: 
   tag:environment: dev #you can filter your AWS inventory by your dev environment tag.
 
+---
+
+2. Filter by spesific Tag Names:
+plugin: amazon.aws.aws_ec2
+regions:
+  - "us-east-1"
+keyed_groups:
+  - key: tags.Name #we will group nodes by tag name.
 
