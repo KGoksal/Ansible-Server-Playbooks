@@ -37,7 +37,7 @@ cat secret.yml
     - name: creating user
       ansible.builtin.user:
         name: "{{ username }}"
-        password: "{{ password }}"
+        password: "{{ password | password_hash ('sha512') }}" //Create encypted file using "ansible-vault" command by using SHA (Secure Hash Algorithm) for your password
 
 
 ```
