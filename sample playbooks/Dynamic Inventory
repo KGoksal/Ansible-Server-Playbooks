@@ -54,7 +54,8 @@ ansible-inventory -i inventory_aws_ec2.yml --graph
 ```
 
 
-- Best Practice Example for Dynamic Inventory:
+- Best Practice Examples for Dynamic Inventory:
+1. Filter by Tag Name:
 plugin: amazon.aws.aws_ec2
 regions:
   - "us-east-1"
