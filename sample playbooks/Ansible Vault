@@ -1,0 +1,54 @@
+- Create encypted file using ``ansible-vault`` command
+
+```
+ansible-vault create secret.yml
+```
+
+New Vault password: your_vault_password
+Confirm Nev Vault password: your_vault_password
+
+```
+username: Your_new_user_name
+password: Your_password
+```
+
+- look at the content: 
+
+```
+cat secret.yml
+```
+```
+33663233353162643530353634323061613431366332373334373066353263353864643630656338
+6165373734333563393162333762386132333665353863610a303130346362343038646139613632
+62633438623265656330326435646366363137373333613463313138333765366466663934646436
+3833386437376337650a636339313535323264626365303031366534363039383935333133306264
+61303433636266636331633734626336643466643735623135633361656131316463
+```
+
+## in order to use this secret.yml:
+
+
+- name: create a user
+  hosts: all
+  become: true
+  vars_files:
+    - secret.yml
+  tasks:
+    - name: creating user
+      ansible.builtin.user:
+        name: "{{ username }}"
+        password: "{{ password }}"
+
+
+```
+ansible-playbook --ask-vault-pass create-user.yml
+```
+
+```
+Vault password: enter_your_vault_password
+```
+- Verify it. This is same process. We just encrypted the variable file.
+
+```
+ansible all -b -m command -a "grep your_user_name /etc/shadow"
+```
