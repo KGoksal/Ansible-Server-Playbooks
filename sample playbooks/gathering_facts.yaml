@@ -4,5 +4,8 @@
     ansible.builtin.debug:
       msg: >
        This host uses IP address {{ ansible_facts.default_ipv4.address }}
+      
+      # Alternative way:
+      # This host uses IP address {{ ansible_facts['default_ipv4']['address'] }}  
 
 # this playbook gathers all IPV4 address of all hosts.
