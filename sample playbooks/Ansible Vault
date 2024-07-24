@@ -9,7 +9,7 @@ Confirm Nev Vault password: your_vault_password
 
 ```
 username: Your_new_user_name
-password: Your_password
+password: Your_password #please do not write your plain password, use SHA (Secure Hash Algorithm) [see below]
 ```
 
 - look at the content: 
