@@ -54,3 +54,11 @@ ansible-inventory -i inventory_aws_ec2.yml --graph
 ```
 
 
+- Best Practice Example for Dynamic Inventory:
+plugin: amazon.aws.aws_ec2
+regions:
+  - "us-east-1"
+filters: 
+  tag:environment: dev #you can filter your AWS inventory by your dev environment tag.
+
+
