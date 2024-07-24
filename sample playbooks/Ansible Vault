@@ -46,6 +46,8 @@ cat secret.yml
 ```
 ansible-playbook --ask-vault-pass create-user.yml
 ```
+ALTERNATIVE:
+ansible-playbook create-user.yml --vault-password-file ./vault_passwd.sh # You can use a vault password file to avoid entering the vault password manually each time.
 
 ```
 Vault password: enter_your_vault_password
