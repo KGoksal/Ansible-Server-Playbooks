@@ -210,5 +210,3 @@ Displays the contents of your `ansible.cfg` file.
 - import_playbook: configure.yml
 ```
 This example shows how to import and run multiple playbooks in a single playbook file.
-
-```
