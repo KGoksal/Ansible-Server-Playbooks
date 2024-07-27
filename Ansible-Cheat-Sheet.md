@@ -11,7 +11,6 @@ ansible-doc ping
 Displays the documentation for the "ping" Ansible module.
 
 ### Display Ansible Help
-
 ```bash
 ansible --help
 ```
@@ -24,7 +23,6 @@ Provides help information for the `ansible-playbook` command, listing available 
 
 ## Listing Hosts
 ### List All Hosts
-
 ```bash
 ansible --list-host all
 ```
@@ -43,7 +41,6 @@ ansible --list-host webservers
 Lists all hosts in the "webservers" group.
 
 ### List Hosts NOT in a Specific Group
-
 ```bash
 ansible --list-host \!webservers
 ```
