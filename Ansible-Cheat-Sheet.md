@@ -5,10 +5,10 @@ This document provides a comprehensive list of useful Ansible commands and their
 ## General Commands
 ### Display Module Documentation
 
-
 ```bash
 ansible-doc ping
 ```
+
 
 Displays the documentation for the "ping" Ansible module.
 
