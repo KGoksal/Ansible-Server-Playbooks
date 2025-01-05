@@ -122,15 +122,15 @@ ansible all -m setup
 ```
 ansible all -b -m user -a "name=<username> password=<password> state=present"
 ```
-- **Check disk space on all hosts**
+- **Check disk space on all hosts** 
 ```
-ansible all -a "df -h"
+ansible all -a "df -h" 
 ```
-**Notes:** The -b flag is used to become a superuser (equivalent to using sudo).
-- **List all hosts**
-```
-ansible --list-hosts all 
-```
+**Notes:** The -b flag is used to become a superuser (equivalent to using sudo). 
+- **List all hosts** 
+``` 
+ansible --list-hosts all  
+``` 
 - **List all hosts other than web-servers**
 ```
 ansible --list-hosts \!web-servers
