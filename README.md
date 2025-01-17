@@ -28,12 +28,13 @@ This project provides Terraform configurations to create AWS EC2 instances for A
 
 1. **Initialize Terraform**
 
-   ```bash
-   terraform init
+   ```
+   terraform init 
    terraform apply
+   ```
 
-## Step 2: Ansible Setup
-### Update Inventory File
+## Step 2: Ansible Setup 
+### Update Inventory File 
 Ensure the inventory.txt file contains the correct private IP addresses of the created EC2 instances.
 
 ### Update Ansible Configuration
