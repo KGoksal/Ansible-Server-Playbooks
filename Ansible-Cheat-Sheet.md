@@ -9,7 +9,6 @@ This document provides a comprehensive list of useful Ansible commands and their
 ansible-doc ping
 ```
 
-
 Displays the documentation for the "ping" Ansible module.
 
 ### Display Ansible Help
@@ -177,6 +176,7 @@ Lists the Ansible configuration settings and filters for `HOST_KEY` or `true`.
 ```bash
 ansible-config view
 ```
+
 Displays the contents of your `ansible.cfg` file.
 
 ## Running Multiple Playbooks in One Playbook
