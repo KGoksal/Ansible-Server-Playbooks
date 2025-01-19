@@ -1,13 +1,13 @@
 // Variable definitions for the Terraform configuration
 
-
+ 
 variable "tags" {
   default = ["control_node", "node_1", "node_2"] // Tags for instances
 }
 
-variable "mykey" {
-  default = "your_key" // SSH key name
-}
+variable "mykey" { 
+  default = "your_key" // SSH key name 
+} 
 
 variable "user" {
   default = "your_user" // User variable for dynamic resource names
